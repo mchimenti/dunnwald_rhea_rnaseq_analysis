@@ -192,6 +192,8 @@ plotCounts(dds_drop, gene = "ENSG00000205592", intgroup = 'group')
 plotCounts(dds_drop, gene = "ENSG00000162078", intgroup = 'group')
 plotCounts(dds_drop, gene = "ENSG00000188856", intgroup = 'group')
 
-
+## write gene lists 
+write.csv(res_lip_syn_IHW_ord, file = "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_lip_syn_IHW_padj_0p1.csv")
+write.csv(res_oral_syn_IHW_ord, file = "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_oral_syn_IHW_padj_0p1.csv")
 
 plotMA(dds_drop)
