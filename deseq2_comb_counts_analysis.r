@@ -28,7 +28,7 @@ library(gage)
 library(gageData)
 library(ggplot2)
 
-setwd("~/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/") 
+setwd("~/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/analysis") 
 
 #######################################
 ## FeatureCounts > DESeq2 > PCAExplorer
@@ -152,13 +152,18 @@ res_lip_syn_IHW <- na.omit(res_lip_syn_IHW)  #drop NA rows
 res_lip_syn_IHW_sig <- res_lip_syn_IHW[res_lip_syn_IHW$padj < sig & res_lip_syn_IHW$baseMean > 5.0,]
 res_lip_syn_IHW_ord <- res_lip_syn_IHW_sig[order(res_lip_syn_IHW_sig$padj),]
 
+res_lip_syn_IHW_ord$gene <- anno[row.names(res_lip_syn_IHW_ord),"gene_name"]
+
 res_oral_syn_IHW <- results(dds_drop, contrast=c("group", "oraly","oraln"), filterFun = ihw)
 res_oral_syn_IHW <- na.omit(res_oral_syn_IHW)  #drop NA rows
 res_oral_syn_IHW_sig <- res_oral_syn_IHW[res_oral_syn_IHW$padj < sig & res_oral_syn_IHW$baseMean > 5.0,]
 res_oral_syn_IHW_ord <- res_oral_syn_IHW_sig[order(res_oral_syn_IHW_sig$padj),]
 
+res_oral_syn_IHW_ord$gene <- anno[row.names(res_oral_syn_IHW_ord), "gene_name"]
+
 ## extract tissue comparisons
 
+sig = 0.05
 res_oral_lip_nosyn <- results(dds_drop, contrast=c("group","oraln","lipn"))
 res_oral_lip_nosyn <- na.omit(res_oral_lip_nosyn)
 res_oral_lip_nosyn_sig <- res_oral_lip_nosyn[res_oral_lip_nosyn$padj < sig & res_oral_lip_nosyn$baseMean > 5.0,]
