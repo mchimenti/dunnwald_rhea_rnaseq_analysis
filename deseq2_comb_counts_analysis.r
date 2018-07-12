@@ -167,10 +167,31 @@ sig = 0.05
 res_oral_lip_nosyn <- results(dds_drop, contrast=c("group","oraln","lipn"))
 res_oral_lip_nosyn <- na.omit(res_oral_lip_nosyn)
 res_oral_lip_nosyn_sig <- res_oral_lip_nosyn[res_oral_lip_nosyn$padj < sig & res_oral_lip_nosyn$baseMean > 5.0,]
-res_oral_lip_nosyn_ord <- res_oral_lip_nosyn_sig[order(res_oral_lip_nosyn_sig$padj),]
+res_oral_lip_nosyn_ord <- res_oral_lip_nosyn_sig[order(res_oral_lip_nosyn_sig$padj), ]
 
+res_oral_lip_nosyn_ord$gene <- anno[row.names(res_oral_lip_nosyn_ord), "gene_name"]
 
+res_oral_lip_syn <- results(dds_drop, contrast=c("group","oraly","lipn"))
+res_oral_lip_syn <- na.omit(res_oral_lip_syn)
+res_oral_lip_syn_sig <- res_oral_lip_syn[res_oral_lip_syn$padj < sig & res_oral_lip_syn$baseMean > 5.0,]
+res_oral_lip_syn_ord <- res_oral_lip_syn_sig[order(res_oral_lip_syn_sig$padj), ]
 
+res_oral_lip_syn_ord$gene <- anno[row.names(res_oral_lip_syn_ord), "gene_name"]
+
+## syndromic DE genes plots
+
+#top lip syndromic
+plotCounts(dds_drop, gene = "ENSG00000188856", intgroup = 'group')
+plotCounts(dds_drop, gene = "ENSG00000262406", intgroup = 'group')
+plotCounts(dds_drop, gene = "ENSG00000237506", intgroup = 'group')
+plotCounts(dds_drop, gene = "ENSG00000234449", intgroup = 'group')
+
+#top oral syndromic
 plotCounts(dds_drop, gene = "ENSG00000171199", intgroup = 'group')
+plotCounts(dds_drop, gene = "ENSG00000205592", intgroup = 'group')
+plotCounts(dds_drop, gene = "ENSG00000162078", intgroup = 'group')
+plotCounts(dds_drop, gene = "ENSG00000188856", intgroup = 'group')
+
+
 
 plotMA(dds_drop)
