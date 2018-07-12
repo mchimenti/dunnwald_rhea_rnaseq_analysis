@@ -120,6 +120,12 @@ anno <- na.omit(anno)
 rld_drop <- rlog(dds_drop, blind=FALSE)
 pcaExplorer(dds=dds_drop,annotation=anno,rlt=rld_drop)
 
+## plotting
+
+plotMA(dds_drop)
+
+plotPCA(rld_drop, intgroup = "group")
+
 
 ## results 
 
@@ -193,7 +199,12 @@ plotCounts(dds_drop, gene = "ENSG00000162078", intgroup = 'group')
 plotCounts(dds_drop, gene = "ENSG00000188856", intgroup = 'group')
 
 ## write gene lists 
-write.csv(res_lip_syn_IHW_ord, file = "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_lip_syn_IHW_padj_0p1.csv")
-write.csv(res_oral_syn_IHW_ord, file = "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_oral_syn_IHW_padj_0p1.csv")
+write.csv(res_lip_syn_IHW_ord, file = 
+            "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_lip_syn_IHW_padj_0p1.csv")
+write.csv(res_oral_syn_IHW_ord, file = 
+            "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_oral_syn_IHW_padj_0p1.csv")
 
-plotMA(dds_drop)
+write.csv(res_oral_lip_syn_ord, file = 
+            "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_oral_lip_syn_padj_0p05.csv")
+write.csv(res_oral_lip_nosyn_ord, file = 
+            "/Users/mchimenti/iihg/RNA_seq/dunnwald_lab/project_rhea_jun2018/res_oral_lip_nosyn_padj_0p05.csv")
